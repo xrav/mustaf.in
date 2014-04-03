@@ -28,6 +28,7 @@ jQuery(document).ready(function () {
 
     });
 
+    $('#current-year').html( (new Date()).getFullYear() );
 });
 
 jQuery(window).load(function () {
