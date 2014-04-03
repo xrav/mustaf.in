@@ -1,15 +1,15 @@
 //Foundations 5 Initialization
-jQuery(document).foundation();
+$(document).foundation();
 
 
-jQuery(document).ready(function () {
+$(document).ready(function () {
 
     var currentlyScrolled;
 
-    jQuery(window).scroll(function () {
+    $(window).scroll(function () {
 
-        var header = jQuery('header');
-        currentlyScrolled = jQuery(this).scrollTop();
+        var header = $('header');
+        currentlyScrolled = $(this).scrollTop();
 
         //Apply Sticky Header
         if (currentlyScrolled > 0) {
@@ -19,11 +19,11 @@ jQuery(document).ready(function () {
             header.removeClass();
         }
 
-        if (jQuery(this).scrollTop() > 100) {
-            jQuery('.backtotop').stop().animate({'right': '0'});
+        if ($(this).scrollTop() > 100) {
+            $('.backtotop').stop().animate({'right': '0'});
         }
         else {
-            jQuery('.backtotop').stop().animate({'right': '-40px'});
+            $('.backtotop').stop().animate({'right': '-40px'});
         }
 
     });
@@ -31,13 +31,13 @@ jQuery(document).ready(function () {
     $('#current-year').html( (new Date()).getFullYear() );
 });
 
-jQuery(window).load(function () {
+$(window).load(function () {
 
     //Set Portfolio Items Height
     function setWorkHeight() {
-        if (jQuery('section.works ul li a figure .imgholder img').length > 0) {
+        if ($('section.works ul li a figure .imgholder img').length > 0) {
 
-            var imageHolder = jQuery('section.works ul li a figure .imgholder');
+            var imageHolder = $('section.works ul li a figure .imgholder');
             imageHolder.css({'height': imageHolder.find('img').height()});
 
         }
@@ -47,28 +47,28 @@ jQuery(window).load(function () {
 
 
     //Services Animation
-    jQuery('section.services .title p').appear();
+    $('section.services .title p').appear();
 
-    jQuery('body').on('appear', 'section.services .title p', function () {
+    $('body').on('appear', 'section.services .title p', function () {
 
         var services = [];
 
-        jQuery('.service').each(function () {
-            services.push(jQuery(this));
+        $('.service').each(function () {
+            services.push($(this));
         });
 
         for (i = 0; i <= services.length; i++) {
-            jQuery(services[i]).delay(i * 400).animate({'opacity': 1}, 400);
+            $(services[i]).delay(i * 400).animate({'opacity': 1}, 400);
         }
 
     });
 
     //Parallax Animation
-    jQuery('section[data-type="background"]').each(function () {
+    $('section[data-type="background"]').each(function () {
         var $bgobj = $(this); // assigning the object
 
-        jQuery(window).scroll(function () {
-            var yPos = -(jQuery(window).scrollTop() / $bgobj.data('speed'));
+        $(window).scroll(function () {
+            var yPos = -($(window).scrollTop() / $bgobj.data('speed'));
 
             // Put together our final background position
             var coords = '50% ' + yPos + 'px';
@@ -79,47 +79,47 @@ jQuery(window).load(function () {
     });
 
     //Portfolio Filtering And Animation
-    var works = jQuery('ul#works');
+    var works = $('ul#works');
 
-    if (jQuery('ul#works').length > 0) {
+    if ($('ul#works').length > 0) {
         works.isotope();
 
-        jQuery('ul.filters').appear();
+        $('ul.filters').appear();
 
-        jQuery('body').on('appear', 'ul.filters', function () {
+        $('body').on('appear', 'ul.filters', function () {
 
             var works = [];
 
-            jQuery('ul#works').find('figure').each(function () {
-                works.push(jQuery(this));
+            $('ul#works').find('figure').each(function () {
+                works.push($(this));
             });
 
             for (i = 0; i <= works.length; i++) {
-                jQuery(works[i]).delay(i * 400).animate({'opacity': 1}, 400);
+                $(works[i]).delay(i * 400).animate({'opacity': 1}, 400);
             }
 
         });
     }
 
     //Works Portfolio Show
-    jQuery('section.works ul li a').click(function () {
+    $('section.works ul li a').click(function () {
 
-        var getCurrentPortTop = jQuery('section.works').offset()
-            , showPortf = jQuery(this).attr('href');
+        var getCurrentPortTop = $('section.works').offset()
+            , showPortf = $(this).attr('href');
 
-        jQuery('html, body').animate({scrollTop: getCurrentPortTop.top}, 500, function () {
+        $('html, body').animate({scrollTop: getCurrentPortTop.top}, 500, function () {
 
-            if (jQuery('section.works article.work.slided').length > 0) {
-                jQuery('section.works article.work.slided').slideUp().removeClass('slided');
-                jQuery(showPortf).slideDown(500, function () {
-                    jQuery('section.works .close').css({'display': 'inline-block'});
-                    jQuery(this).addClass('slided');
+            if ($('section.works article.work.slided').length > 0) {
+                $('section.works article.work.slided').slideUp().removeClass('slided');
+                $(showPortf).slideDown(500, function () {
+                    $('section.works .close').css({'display': 'inline-block'});
+                    $(this).addClass('slided');
                 });
             }
             else {
-                jQuery(showPortf).slideDown(500, function () {
-                    jQuery('section.works .close').css({'display': 'inline-block'});
-                    jQuery(this).addClass('slided');
+                $(showPortf).slideDown(500, function () {
+                    $('section.works .close').css({'display': 'inline-block'});
+                    $(this).addClass('slided');
                 });
             }
 
@@ -130,56 +130,56 @@ jQuery(window).load(function () {
     });
 
     //Close Event
-    jQuery('body').on('click', 'section.works .close', function () {
+    $('body').on('click', 'section.works .close', function () {
 
-        var getCurrentPortTop = jQuery('section.works').offset();
+        var getCurrentPortTop = $('section.works').offset();
 
-        jQuery('section.works .close').css({'display': 'none'});
-        jQuery('section.works article.work.slided').slideUp().removeClass('slided');
+        $('section.works .close').css({'display': 'none'});
+        $('section.works article.work.slided').slideUp().removeClass('slided');
 
-        jQuery('html, body').animate({scrollTop: getCurrentPortTop.top}, 500);
+        $('html, body').animate({scrollTop: getCurrentPortTop.top}, 500);
 
         return false;
     });
 
 
-    jQuery('.filters li a').click(function () {
+    $('.filters li a').click(function () {
 
-        if (jQuery('section.works article.work.slided').length > 0) {
-            jQuery('section.works article.work.slided').slideUp();
+        if ($('section.works article.work.slided').length > 0) {
+            $('section.works article.work.slided').slideUp();
         }
 
-        jQuery('.filters li').removeClass();
-        jQuery(this).parent().addClass('selected');
+        $('.filters li').removeClass();
+        $(this).parent().addClass('selected');
 
-        var selector = jQuery(this).attr('data-filter');
+        var selector = $(this).attr('data-filter');
         works.isotope({ filter: selector });
         return false;
 
     });
 
     //Input Placeholders
-    jQuery(".defaultText").focus(function (srcc) {
-        if (jQuery(this).val() == jQuery(this)[0].title) {
-            jQuery(this).removeClass("defaultTextActive");
-            jQuery(this).val("");
+    $(".defaultText").focus(function (srcc) {
+        if ($(this).val() == $(this)[0].title) {
+            $(this).removeClass("defaultTextActive");
+            $(this).val("");
         }
     });
 
-    jQuery(".defaultText").blur(function () {
-        if (jQuery(this).val() == "") {
-            jQuery(this).addClass("defaultTextActive");
-            jQuery(this).val($(this)[0].title);
+    $(".defaultText").blur(function () {
+        if ($(this).val() == "") {
+            $(this).addClass("defaultTextActive");
+            $(this).val($(this)[0].title);
         }
     });
 
-    jQuery(".defaultText").blur();
+    $(".defaultText").blur();
 
     function banner() {
         //Banner Initialization
-        if (jQuery('section.about .slider img').length > 1) {
+        if ($('section.about .slider img').length > 1) {
 
-            var slider = jQuery('section.about .slider');
+            var slider = $('section.about .slider');
 
             slider.trigger("destroy");
 
@@ -210,7 +210,7 @@ jQuery(window).load(function () {
 
         }
         else {
-            jQuery('section.about .sliderHolder .bannerNav a').css({'display': 'none'});
+            $('section.about .sliderHolder .bannerNav a').css({'display': 'none'});
         }
     }
 
@@ -221,18 +221,18 @@ jQuery(window).load(function () {
 
         var serviceHeight = 0;
 
-        if (jQuery('section.services .service').length > 0) {
+        if ($('section.services .service').length > 0) {
 
-            jQuery('section.services .service').css({'height': 'auto'});
+            $('section.services .service').css({'height': 'auto'});
 
-            jQuery('section.services .service').each(function () {
+            $('section.services .service').each(function () {
 
-                if (jQuery(this).height() > serviceHeight) {
-                    serviceHeight = jQuery(this).height();
+                if ($(this).height() > serviceHeight) {
+                    serviceHeight = $(this).height();
                 }
             });
 
-            jQuery('section.services .service').css({'height': serviceHeight + 20});
+            $('section.services .service').css({'height': serviceHeight + 20});
 
         }
     }
@@ -241,7 +241,7 @@ jQuery(window).load(function () {
 
     function testimonialsSlider() {
 
-        var testimonialsSlider = jQuery('section.testimonials .holder');
+        var testimonialsSlider = $('section.testimonials .holder');
 
         if (testimonialsSlider.find('article').length > 1) {
 
@@ -286,17 +286,17 @@ jQuery(window).load(function () {
 
     function memberSlider() {
         //Member Slider
-        if (jQuery('section.team .slider .sliderholder .member').length > 0) {
+        if ($('section.team .slider .sliderholder .member').length > 0) {
 
-            jQuery('section.team .slider .sliderholder').trigger("destroy");
-            jQuery('section.team .slider .sliderholder .member').css({'width': 'auto', 'height': 'auto'});
+            $('section.team .slider .sliderholder').trigger("destroy");
+            $('section.team .slider .sliderholder .member').css({'width': 'auto', 'height': 'auto'});
 
-            var memberSliderWidth = jQuery('section.team .slider .sliderholder .member').eq(0).width();
-            var memberSliderHeight = jQuery('section.team .slider .sliderholder .member').eq(0).height();
+            var memberSliderWidth = $('section.team .slider .sliderholder .member').eq(0).width();
+            var memberSliderHeight = $('section.team .slider .sliderholder .member').eq(0).height();
 
-            jQuery('section.team .slider .sliderholder .member').css({'width': memberSliderWidth, 'height': memberSliderHeight});
+            $('section.team .slider .sliderholder .member').css({'width': memberSliderWidth, 'height': memberSliderHeight});
 
-            jQuery('section.team .slider .sliderholder').carouFredSel({
+            $('section.team .slider .sliderholder').carouFredSel({
 
                 items: {
                     visible: 1,
@@ -331,7 +331,7 @@ jQuery(window).load(function () {
     memberSlider();
 
     //Page Scroll
-    jQuery(".scroll").click(function (event) {
+    $(".scroll").click(function (event) {
 
         //prevent the default action for the click event
         event.preventDefault();
@@ -343,17 +343,17 @@ jQuery(window).load(function () {
         var trgt = parts[1];
         //get the top offset of the target anchor
 
-        var target_offset = jQuery("#" + trgt).offset();
+        var target_offset = $("#" + trgt).offset();
 
         var target_top = target_offset.top - 29;
 
         //goto that anchor by setting the body scroll top to anchor top
-        jQuery('html, body').animate({scrollTop: target_top}, 1000);
+        $('html, body').animate({scrollTop: target_top}, 1000);
 
     });
 
     //On Window Resize
-    jQuery(window).resize(function () {
+    $(window).resize(function () {
         setWorkHeight();
         testimonialsSlider();
         setServiceHeight();
