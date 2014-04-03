@@ -793,6 +793,7 @@ section.contact {
     padding: 80px 0;
 }
 
+/* Гениальная штука, которая раскарашивает карту в серый цвет */
 section.contact .map {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
