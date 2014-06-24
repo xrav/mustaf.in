@@ -78,85 +78,9 @@ $(window).load(function () {
         });
     });
 
-    //Portfolio Filtering And Animation
-    var works = $('ul#works');
-
-    if ($('ul#works').length > 0) {
-        works.isotope();
-
-        $('ul.filters').appear();
-
-        $('body').on('appear', 'ul.filters', function () {
-
-            var works = [];
-
-            $('ul#works').find('figure').each(function () {
-                works.push($(this));
-            });
-
-            for (i = 0; i <= works.length; i++) {
-                $(works[i]).delay(i * 400).animate({'opacity': 1}, 400);
-            }
-
-        });
-    }
-
-    //Works Portfolio Show
-    $('section.works ul li a').click(function () {
-
-        var getCurrentPortTop = $('section.works').offset()
-            , showPortf = $(this).attr('href');
-
-        $('html, body').animate({scrollTop: getCurrentPortTop.top}, 500, function () {
-
-            if ($('section.works article.work.slided').length > 0) {
-                $('section.works article.work.slided').slideUp().removeClass('slided');
-                $(showPortf).slideDown(500, function () {
-                    $('section.works .close').css({'display': 'inline-block'});
-                    $(this).addClass('slided');
-                });
-            }
-            else {
-                $(showPortf).slideDown(500, function () {
-                    $('section.works .close').css({'display': 'inline-block'});
-                    $(this).addClass('slided');
-                });
-            }
-
-        });
-
-        return false;
-
-    });
-
-    //Close Event
-    $('body').on('click', 'section.works .close', function () {
-
-        var getCurrentPortTop = $('section.works').offset();
-
-        $('section.works .close').css({'display': 'none'});
-        $('section.works article.work.slided').slideUp().removeClass('slided');
-
-        $('html, body').animate({scrollTop: getCurrentPortTop.top}, 500);
-
-        return false;
-    });
 
 
-    $('.filters li a').click(function () {
 
-        if ($('section.works article.work.slided').length > 0) {
-            $('section.works article.work.slided').slideUp();
-        }
-
-        $('.filters li').removeClass();
-        $(this).parent().addClass('selected');
-
-        var selector = $(this).attr('data-filter');
-        works.isotope({ filter: selector });
-        return false;
-
-    });
 
     //Input Placeholders
     $(".defaultText").focus(function (srcc) {
